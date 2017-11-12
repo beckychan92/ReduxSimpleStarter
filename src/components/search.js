@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
-
 class SearchBar extends React.Component {
     //define and initialize state 
     constructor(props) {
@@ -10,16 +8,26 @@ class SearchBar extends React.Component {
         this.state = {term: ''};
     }
 
-
     render() {
         return (
-            <div>
-                
-                <input onChange={event => this.setState({term: event.target.value})} />
-                
+            <div className='search-bar'>
+                <input 
+                onChange={event => this.onInputChange(event.target.value)} />
             </div>
         ); 
+    
+
     }
+    onInputChange(term) {
+        this.setState({term});
+        this.props.onSearchTermChange(term);
+    }
+}
+
+export default SearchBar; 
+
+
+
 
     // //event handlier
     // onInputChange(event) {
@@ -29,10 +37,6 @@ class SearchBar extends React.Component {
     // }
 
     // Value of the input: {this.state.term}
-}
-
-export default SearchBar; 
-
 //STATE: plain js object that is used to record and react to user events. each class based component that we define has its own state object whenever a component state is changed, the component immediately renders and forces all of its children to render as well
 
 
